@@ -2,6 +2,7 @@ import { useState } from 'react';
 import clsx from 'clsx';
 
 import { ArrowButton } from 'src/ui/arrow-button';
+import { Text } from 'src/ui/text';
 import { RadioGroup } from 'src/ui/radio-group';
 import { Separator } from 'src/ui/separator';
 import { Select } from 'src/ui/select';
@@ -36,13 +37,17 @@ export const ArticleParamsForm = ( { onApply }: Props) => {
 			<ArrowButton isOpen={isOpen} onClick={toggleSidebar} />
 			<aside className={clsx(styles.container, isOpen && styles.container_open)}>
 				<form className={styles.form} onSubmit={handleSubmit} onReset={handleReset}>
+					<Text as="h2" size={31} weight={800} uppercase>Задайте параметры</Text>
+
 					<Select title="Шрифт" options={fontFamilyOptions} selected={formState.fontFamilyOption} onChange={(option) => setFormState({...formState, fontFamilyOption: option })} placeholder='Выберите шрифт'/>
 
 					<RadioGroup title="Размер шрифта" options={fontSizeOptions} selected={formState.fontSizeOption} onChange={(option) => setFormState({...formState, fontSizeOption: option })} name='font-size'/>
 
 					<Select title="Цвет шрифта" options={fontColors} selected={formState.fontColor} onChange={(option) => setFormState({...formState, fontColor: option})}/>
 
-					<Separator />
+					<div className={styles.separator}>
+  						<Separator />
+					</div>
 
 					<Select title="Цвет фона" options={backgroundColors} selected={formState.backgroundColor} onChange={(option) => setFormState({...formState, backgroundColor: option})}/>
 

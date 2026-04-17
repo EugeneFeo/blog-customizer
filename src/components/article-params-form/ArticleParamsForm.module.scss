@@ -18,15 +18,19 @@
 	flex-direction: column;
 	box-sizing: border-box;
 	width: 616px;
-	height: auto;
 	min-height: 100%;
 	padding: 50px 31px;
 	background-color: #ffffff;
 	border-right: 1px solid #000000;
+	gap: 50px;
+}
+
+.separator {
+	margin: 10px 0;
 }
 
 .bottomContainer {
 	display: flex;
 	justify-content: space-between;
-	margin-top: auto;
+	margin-top: 110px;
 }
