@@ -1,5 +1,4 @@
-import { FormEvent, useEffect, useRef, useState  } from 'react';
-import clsx from 'clsx';
+import { FormEvent, useEffect, useRef, useState } from 'react';
 
 import { ArrowButton } from 'src/ui/arrow-button';
 import { Text } from 'src/ui/text';
@@ -8,17 +7,23 @@ import { Separator } from 'src/ui/separator';
 import { Select } from 'src/ui/select';
 import { Button } from 'src/ui/button';
 
-
-import { ArticleStateType, defaultArticleState,fontFamilyOptions, fontSizeOptions, fontColors, backgroundColors, contentWidthArr } from 'src/constants/articleProps';
+import {
+	ArticleStateType,
+	fontFamilyOptions,
+	fontSizeOptions,
+	fontColors,
+	backgroundColors,
+	contentWidthArr,
+} from 'src/constants/articleProps';
 
 import styles from './ArticleParamsForm.module.scss';
 
 type Props = {
-  onApply: (state: ArticleStateType) => void;
-  initialState: ArticleStateType;
+	onApply: (state: ArticleStateType) => void;
+	initialState: ArticleStateType;
 };
 
-export const ArticleParamsForm = ( { onApply, initialState }: Props) => {
+export const ArticleParamsForm = ({ onApply, initialState }: Props) => {
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 	const [formState, setFormState] = useState<ArticleStateType>(initialState);
 
@@ -95,7 +100,9 @@ export const ArticleParamsForm = ( { onApply, initialState }: Props) => {
 		}));
 	};
 
-	const handleContentWidthChange = (option: ArticleStateType['contentWidth']) => {
+	const handleContentWidthChange = (
+		option: ArticleStateType['contentWidth']
+	) => {
 		setFormState((prevState) => ({
 			...prevState,
 			contentWidth: option,
@@ -110,22 +117,54 @@ export const ArticleParamsForm = ( { onApply, initialState }: Props) => {
 				className={`${styles.container} ${
 					isSidebarOpen ? styles.container_open : ''
 				}`}>
-				<form className={styles.form} onSubmit={handleSubmit} onReset={handleReset}>
-					<Text as="h2" size={31} weight={800} uppercase>Задайте параметры</Text>
+				<form
+					className={styles.form}
+					onSubmit={handleSubmit}
+					onReset={handleReset}>
+					<Text as='h2' size={31} weight={800} uppercase>
+						Задайте параметры
+					</Text>
 
-					<Select title="Шрифт" options={fontFamilyOptions} selected={formState.fontFamilyOption} onChange={handleFontFamilyChange} placeholder='Выберите шрифт'/>
+					<Select
+						title='Шрифт'
+						options={fontFamilyOptions}
+						selected={formState.fontFamilyOption}
+						onChange={handleFontFamilyChange}
+						placeholder='Выберите шрифт'
+					/>
 
-					<RadioGroup title="Размер шрифта" options={fontSizeOptions} selected={formState.fontSizeOption} onChange={handleFontSizeChange} name='font-size'/>
+					<RadioGroup
+						title='Размер шрифта'
+						options={fontSizeOptions}
+						selected={formState.fontSizeOption}
+						onChange={handleFontSizeChange}
+						name='font-size'
+					/>
 
-					<Select title="Цвет шрифта" options={fontColors} selected={formState.fontColor} onChange={handleFontColorChange}/>
+					<Select
+						title='Цвет шрифта'
+						options={fontColors}
+						selected={formState.fontColor}
+						onChange={handleFontColorChange}
+					/>
 
 					<div className={styles.separator}>
-  						<Separator />
+						<Separator />
 					</div>
 
-					<Select title="Цвет фона" options={backgroundColors} selected={formState.backgroundColor} onChange={handleBackgroundColorChange}/>
+					<Select
+						title='Цвет фона'
+						options={backgroundColors}
+						selected={formState.backgroundColor}
+						onChange={handleBackgroundColorChange}
+					/>
 
-					<Select title="Ширина контента" options={contentWidthArr} selected={formState.contentWidth} onChange={handleContentWidthChange}/>
+					<Select
+						title='Ширина контента'
+						options={contentWidthArr}
+						selected={formState.contentWidth}
+						onChange={handleContentWidthChange}
+					/>
 
 					<div className={styles.bottomContainer}>
 						<Button title='Сбросить' htmlType='reset' type='clear' />
